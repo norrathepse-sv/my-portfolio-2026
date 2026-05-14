@@ -21,66 +21,77 @@ export default function Certificates() {
   }, [selectedImage]);
 
   return (
-    <section id="certificates" className="relative py-24 bg-white border-t border-black/5 overflow-hidden">
+    <section id="certificates" className="relative py-24 bg-white border-t border-gray-100 overflow-hidden">
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            {/* <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Qualifications</p> */}
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#1d1d1f] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
               Certificates
             </h2>
+            <p className="text-gray-500 mt-3 text-sm md:text-base">
+              เอกสารรับรองคุณวุฒิ และประวัติการพัฒนาทักษะวิชาชีพ
+            </p>
           </div>
 
-          {/* Tab Buttons */}
-          <div className="flex border-b border-black/5 self-start md:self-auto w-full md:w-auto">
+          {/* Tab Buttons (สไตล์มินิมอล) */}
+          <div className="flex bg-gray-100/80 p-1 rounded-xl self-start md:self-auto w-full md:w-auto">
             <button
               onClick={() => setActiveTab("certs")}
-              className={`px-6 py-3 text-xs font-medium tracking-tight transition-all duration-200 border-b-2 ${
+              className={`flex-1 md:flex-none px-6 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
                 activeTab === "certs" 
-                  ? "text-apple-blue border-apple-blue" 
-                  : "text-apple-text-grey border-transparent hover:text-[#1d1d1f]"
+                  ? "bg-white text-gray-900 shadow-sm" 
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               Certificates
             </button>
+            {/* หากต้องการเปิดใช้ Tab Trainings ในอนาคต สามารถเอา Comment ออกได้เลยครับ */}
+            {/* <button
+              onClick={() => setActiveTab("trainings")}
+              className={`flex-1 md:flex-none px-6 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                activeTab === "trainings" 
+                  ? "bg-white text-gray-900 shadow-sm" 
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              Trainings
+            </button> */}
           </div>
         </div>
 
-        {/* Certificates Grid */}
+        {/* Certificates Grid (ดีไซน์การ์ดแบบ Clean) */}
         {activeTab === "certs" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
             {certificates.map((cert) => (
               <div 
                 key={cert.id} 
-                className="group cursor-pointer bg-apple-grey border border-black/5 p-3 rounded-lg hover:shadow-lg hover:border-apple-blue/20 transition-all duration-300"
+                className="group cursor-pointer bg-white border border-gray-200 rounded-2xl p-4 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 transition-all duration-300"
                 onClick={() => setSelectedImage(cert.imageUrl)}
               >
                 {/* Certificate Image */}
-                <div className="relative aspect-[4/3] bg-black/5 overflow-hidden border border-black/5 rounded-md flex items-center justify-center group-hover:border-apple-blue/30 transition-all">
-                  <span className="text-xs font-medium text-apple-text-grey uppercase tracking-tight">
+                <div className="relative aspect-[4/3] bg-gray-50 overflow-hidden rounded-xl border border-gray-100 flex items-center justify-center">
+                  <span className="text-xs font-medium text-gray-400">
                     Loading preview...
                   </span>
                   <Image 
                     src={cert.imageUrl} 
                     alt={cert.title} 
                     fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" 
                   />
                 </div>
 
                 {/* Certificate Info */}
-                <div className="mt-3">
-                  <h4 className="text-sm font-semibold text-[#1d1d1f] line-clamp-2 group-hover:text-apple-blue transition-colors">
+                <div className="mt-5 px-1">
+                  <h4 className="text-base font-bold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors leading-snug">
                     {cert.title}
                   </h4>
-                  <p className="text-xs text-apple-text-grey mt-2 tracking-tight">
-                    {cert.issuer} • {cert.year}
-                  </p>
-                  <p className="text-xs text-apple-blue font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                    <span>→</span> View Certificate
+                  <p className="text-sm text-gray-500 mt-1.5 flex items-center justify-between">
+                    <span>{cert.issuer}</span>
+                    <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs font-medium">{cert.year}</span>
                   </p>
                 </div>
               </div>
@@ -88,79 +99,40 @@ export default function Certificates() {
           </div>
         )}
 
-        {/* เนื้อหา Tab 2: ประวัติการอบรม (แบบ Terminal List) */}
-        {/* {activeTab === "trainings" && (
-          <div className="bg-[#111111] border border-white/10 p-2 md:p-6 animate-fade-in relative">
-            <ul className="divide-y divide-white/5">
-              {trainings?.map((training) => (
-                <li key={training.id} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-white/5 transition-colors group">
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 font-mono text-slate-600 group-hover:text-blue-500 transition-colors">
-                      {'>'}
-                    </div>
-                    <div>
-                      <h4 className="text-sm md:text-base font-bold text-slate-200 group-hover:text-white transition-colors">
-                        {training.course}
-                      </h4>
-                      <p className="text-xs text-slate-500 font-mono mt-1 uppercase">
-                        HOST: {training.organizer}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="md:text-right flex-shrink-0 pl-7 md:pl-0">
-                    <span className="inline-block px-2 py-1 bg-white/5 border border-white/10 text-blue-400 font-mono text-[10px] font-bold tracking-widest uppercase">
-                      [{training.period}]
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )} */}
-
       </div>
 
       {/* 
         ========================================
-        ส่วนของ Modal (Popup สไตล์ HUD/Tech)
+        ส่วนของ Modal (Popup รูปแบบ Clean & Focused)
         ========================================
       */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0a0a0a]/95 backdrop-blur-md p-4 md:p-8 animate-fade-in"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4 md:p-10 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
-          {/* ข้อมูลตกแต่ง UI ของ Modal */}
-          <div className="absolute top-6 left-6 text-blue-500 font-mono text-xs tracking-widest uppercase hidden md:block">
-            <span className="inline-block w-2 h-2 bg-blue-500 mr-2 animate-pulse"></span>
-            Viewing_Document
-          </div>
-          
-          {/* ปุ่มปิด (สไตล์ Terminal Command) */}
+          {/* ปุ่มปิด (X) สไตล์มินิมอล */}
           <button 
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 md:top-6 md:right-6 px-4 py-2 bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 border border-white/10 hover:border-red-500/50 font-mono text-xs uppercase tracking-widest transition-all z-10"
+            className="absolute top-6 right-6 md:top-8 md:right-8 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all z-10 hover:scale-110"
+            aria-label="Close modal"
           >
-            [ Close / ESC ]
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
 
-          {/* กรอบแสดงรูปภาพ (HUD Frame) */}
+          {/* กรอบแสดงรูปภาพ (ไร้ขอบรกๆ เน้นรูป 100%) */}
           <div 
-            className="relative w-full h-full max-w-5xl flex items-center justify-center border border-white/10 bg-[#111111]/50 p-2 shadow-[0_0_50px_rgba(59,130,246,0.1)]"
+            className="relative w-full h-full max-w-5xl flex items-center justify-center drop-shadow-2xl"
             onClick={(e) => e.stopPropagation()} 
           >
-            {/* กรอบมุม */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-blue-500"></div>
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-blue-500"></div>
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-500"></div>
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-blue-500"></div>
-
             <div className="relative w-full h-full">
               <Image 
                 src={selectedImage} 
                 alt="Certificate Full Size" 
                 fill 
-                className="object-contain" 
+                className="object-contain rounded-lg" 
               />
             </div>
           </div>

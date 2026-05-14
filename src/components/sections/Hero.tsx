@@ -15,12 +15,15 @@ export default function Hero() {
           {/* Hero Headline */}
           <div className="md:col-span-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-medium tracking-tight text-apple-text-grey">
-              Developer & System Architect
+              นักพัฒนาระบบและสถาปนิกโซลูชัน
             </div>
             
-            <h1 className="text-6xl md:text-7xl font-semibold text-[#1d1d1f] leading-tight tracking-tight mb-8">
-              Building robust solutions for healthcare systems
+            <h1 className="text-5xl md:text-7xl font-semibold text-[#1d1d1f] tracking-tight leading-tight mb-10">
+              ออกแบบระบบไอทีที่รองรับงานสุขภาพได้อย่างมั่นคง
             </h1>
+            <p className="text-apple-text-grey text-sm md:text-base leading-relaxed border-l-2 border-black/5 pl-4">
+              สร้างระบบองค์กรที่ใช้งานได้จริงและดูแลได้ง่าย โดยเน้นโครงสร้างที่ชัดเจนและปลอดภัย
+            </p>
           </div>
 
           {/* Description and CTA */}
