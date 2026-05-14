@@ -17,8 +17,8 @@ const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
     { name: 'HOME', href: '/' },
-    { name: 'PROJECTS', href: '#projects' },
-    // { name: 'ABOUT', href: '#about' },
+    { name: 'COMPETENCIES', href: '#skills' },
+    { name: 'SHOW CASE', href: '#projects' },
     { name: 'CERTIFICATIONS', href: '#certificates' },
   ];
 
