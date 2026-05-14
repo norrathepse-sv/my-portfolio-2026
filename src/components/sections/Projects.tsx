@@ -30,114 +30,94 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative py-24 bg-[#0a0a0a] border-t border-white/5 overflow-hidden">
+    <section id="projects" className="relative py-24 bg-white border-t border-black/5 overflow-hidden">
       
       {/* Background Decorator */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" 
-           style={{ backgroundImage: `linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px)`, 
-           backgroundSize: '30px 30px' }}>
+          >
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* หัวข้อ Section สไตล์ Terminal */}
+        {/* Section Header */}
         <div className="mb-12">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-blue-500 font-mono text-sm">03 //</span>
-            <span className="text-white font-mono text-sm tracking-[0.2em] uppercase">
-              Project_Archive
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">
-            SELECTED <span className="text-slate-500">WORKS.</span>
+          <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Featured Projects</p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#1d1d1f] tracking-tight">
+            Projects
           </h2>
         </div>
 
-        {/* ปุ่ม Filter สไตล์ Code Editor Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-12 border-b border-white/10 pb-4">
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap items-center gap-2 mb-12 border-b border-black/5 pb-4">
           {[
-            { label: "ALL_SYSTEMS", value: "All" },
-            { label: "WEB_APP", value: "Web Application" },
-            { label: "WEBSITE", value: "Website" },
-            { label: "MOBILE", value: "Mobile App" }
+            { label: "All", value: "All" },
+            { label: "Web Application", value: "Web Application" },
+            { label: "Website", value: "Website" },
+            { label: "Mobile App", value: "Mobile App" }
           ].map((tab) => (
             <button
               key={tab.value}
               onClick={() => setFilter(tab.value as FilterOption)}
-              className={`px-4 py-2 font-mono text-xs tracking-widest transition-all duration-300 relative ${
+              className={`px-4 py-2 text-xs font-medium tracking-tight transition-all duration-200 ${
                 filter === tab.value 
-                  ? "text-blue-400" 
-                  : "text-slate-500 hover:text-slate-300"
+                  ? "text-apple-blue border-b-2 border-apple-blue" 
+                  : "text-apple-text-grey hover:text-[#1d1d1f]"
               }`}
             >
-              {filter === tab.value && (
-                <span className="absolute bottom-[-17px] left-0 w-full h-[2px] bg-blue-500"></span>
-              )}
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Grid แสดงผลงาน */}
+        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {filteredProjects.map((project) => (
             <Link 
               href={`/projects/${project.id}`} 
               key={project.id} 
-              className="group relative bg-[#111111] border border-white/10 flex flex-col hover:border-blue-500/50 transition-all duration-500"
+              className="group relative bg-apple-grey border border-black/5 flex flex-col rounded-lg overflow-hidden hover:shadow-lg hover:border-apple-blue/20 transition-all duration-300"
             >
-              {/* มุมตกแต่ง (Corner accents) */}
-              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500 opacity-0 group-hover:opacity-100 transition-opacity z-20"></div>
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500 opacity-0 group-hover:opacity-100 transition-opacity z-20"></div>
-
-              {/* ส่วนรูปภาพโปรเจกต์ */}
-              <div className="relative h-60 bg-[#1a1a1a] flex items-center justify-center overflow-hidden border-b border-white/10">
-                <span className="text-xs font-mono text-slate-600 absolute z-0 uppercase tracking-widest">
-                  Loading_Asset...
+              {/* Project Image */}
+              <div className="relative h-64 bg-black/5 flex items-center justify-center overflow-hidden border-b border-black/5">
+                <span className="text-xs font-medium text-apple-text-grey absolute z-0 uppercase tracking-tight">
+                  Loading preview...
                 </span>
                 
-                {/* 
-                  เทคนิค Grayscale: ทำให้รูปเป็นสีขาวดำ แล้วจะเปลี่ยนเป็นสีปกติเมื่อ Hover 
-                  ช่วยให้หน้าเว็บดูเท่และเป็นระเบียบเมื่อมองภาพรวม 
-                */}
                 <img 
                   src={project.imageUrl} 
                   alt={project.title} 
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-10"
                   onError={(e) => {
-                    e.currentTarget.src = "https://placehold.co/800x400/111111/333333?text=SYS_IMAGE_MISSING";
+                    e.currentTarget.src = "https://placehold.co/800x400/f5f5f7/999999?text=Image";
                   }}
                 />
-                
-                {/* Overlay บางๆ เพื่อให้เข้ากับ Dark Mode */}
-                <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
               </div>
 
-              {/* ส่วนรายละเอียดโปรเจกต์ */}
-              <div className="p-8 flex flex-col flex-grow">
-                <div className="mb-5 flex items-center justify-between">
-                  <span className={`text-[10px] font-mono font-bold tracking-widest uppercase px-2 py-1 border rounded-sm ${getBadgeStyle(project.category)}`}>
+              {/* Project Info */}
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="text-xs font-medium bg-apple-blue/10 text-apple-blue px-2 py-1 rounded-sm tracking-tight">
                     {project.category}
                   </span>
-                  <span className="text-slate-600 font-mono text-xs group-hover:text-blue-500 transition-colors">
-                    _ID: {project.id.toString().padStart(2, '0')}
+                  <span className="text-apple-text-grey text-xs">
+                    ID: {project.id.toString().padStart(2, '0')}
                   </span>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300 tracking-tight">
+                <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2 group-hover:text-apple-blue transition-colors duration-300">
                   {project.title}
                 </h3>
                 
-                <p className="text-slate-400 text-sm mb-8 flex-grow leading-relaxed font-light">
+                <p className="text-apple-text-grey text-sm mb-6 flex-grow leading-relaxed">
                   {project.description}
                 </p>
                 
-                {/* เทคโนโลยีที่ใช้ (Tech Stack) */}
-                <div className="pt-5 border-t border-white/10 flex flex-wrap gap-2 mt-auto">
+                {/* Tech Stack */}
+                <div className="pt-4 border-t border-black/5 flex flex-wrap gap-2 mt-auto">
                   {project.techStack.map((tech) => (
                     <span 
                       key={tech} 
-                      className="px-2 py-1 text-[10px] font-mono bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-white/30 transition-colors cursor-default"
+                      className="px-2 py-1 text-xs font-medium bg-white border border-black/10 text-apple-text-grey hover:text-apple-blue transition-colors cursor-default rounded-sm"
                     >
                       {tech}
                     </span>

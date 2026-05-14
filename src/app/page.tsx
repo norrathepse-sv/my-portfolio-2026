@@ -8,12 +8,12 @@ import About from "@/components/sections/About";
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-800 font-sans">
+    <main className="min-h-screen bg-white selection:bg-apple-blue/10 selection:text-apple-blue">
       <Hero />
-      <About />
+      {/* <About /> */}
       <Skills />
       <Projects />
-      <ExperienceAndDuties />
+      {/* <ExperienceAndDuties /> */}
       <Certificates />
       {/* <Contact /> */}
     </main>

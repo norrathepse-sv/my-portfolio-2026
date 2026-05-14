@@ -38,7 +38,7 @@ export default function RootLayout({
         และให้ตัวอักษรพื้นฐานเป็นสีเทาสว่าง (text-slate-300) 
       */}
       <body 
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-[#0a0a0a] text-slate-300 antialiased min-h-screen flex flex-col`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-white text-[#1d1d1f] antialiased min-h-screen flex flex-col`}
       >
         {/* แถบเมนูด้านบน จะอยู่ทุกหน้า */}
         <Navbar />

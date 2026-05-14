@@ -21,102 +21,66 @@ export default function Certificates() {
   }, [selectedImage]);
 
   return (
-    <section id="certificates" className="relative py-24 bg-[#0a0a0a] border-t border-white/5 overflow-hidden">
-      
-      {/* Background Decorator */}
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" 
-           style={{ backgroundImage: `linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px)`, 
-           backgroundSize: '30px 30px' }}>
-      </div>
+    <section id="certificates" className="relative py-24 bg-white border-t border-black/5 overflow-hidden">
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* หัวข้อ Section */}
+        {/* Section Header */}
         <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-blue-500 font-mono text-sm">05 //</span>
-              <span className="text-white font-mono text-sm tracking-[0.2em] uppercase">
-                System_Credentials
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">
-              CERTIFICATES <span className="text-slate-500">& LOGS.</span>
+            <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Qualifications</p>
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#1d1d1f] tracking-tight">
+              Certificates & Licenses
             </h2>
-            <p className="text-slate-500 font-mono text-xs mt-4 uppercase tracking-widest">
-              {'>'} Verifying professional qualifications...
-            </p>
           </div>
 
-          {/* ปุ่มสลับ Tab สไตล์ Code Editor */}
-          <div className="flex border-b border-white/10 self-start md:self-auto w-full md:w-auto">
+          {/* Tab Buttons */}
+          <div className="flex border-b border-black/5 self-start md:self-auto w-full md:w-auto">
             <button
               onClick={() => setActiveTab("certs")}
-              className={`px-6 py-3 font-mono text-xs tracking-widest uppercase transition-all duration-300 relative ${
+              className={`px-6 py-3 text-xs font-medium tracking-tight transition-all duration-200 border-b-2 ${
                 activeTab === "certs" 
-                  ? "text-blue-400 bg-white/5" 
-                  : "text-slate-500 hover:text-slate-300 hover:bg-white/5"
+                  ? "text-apple-blue border-apple-blue" 
+                  : "text-apple-text-grey border-transparent hover:text-[#1d1d1f]"
               }`}
             >
-              {activeTab === "certs" && (
-                <span className="absolute bottom-[-1px] left-0 w-full h-[2px] bg-blue-500"></span>
-              )}
-              [ CERTIFICATES ]
+              Certificates
             </button>
-            {/* <button
-              onClick={() => setActiveTab("trainings")}
-              className={`px-6 py-3 font-mono text-xs tracking-widest uppercase transition-all duration-300 relative ${
-                activeTab === "trainings" 
-                  ? "text-blue-400 bg-white/5" 
-                  : "text-slate-500 hover:text-slate-300 hover:bg-white/5"
-              }`}
-            >
-              {activeTab === "trainings" && (
-                <span className="absolute bottom-[-1px] left-0 w-full h-[2px] bg-blue-500"></span>
-              )}
-              [ TRAINING_LOGS ]
-            </button> */}
           </div>
         </div>
 
-        {/* เนื้อหา Tab 1: เกียรติบัตร (แบบ Grid รูปภาพสไตล์ Tech) */}
+        {/* Certificates Grid */}
         {activeTab === "certs" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
             {certificates.map((cert) => (
               <div 
                 key={cert.id} 
-                className="group cursor-pointer bg-[#111111] border border-white/10 p-3 hover:border-blue-500/50 transition-all duration-500 relative"
+                className="group cursor-pointer bg-apple-grey border border-black/5 p-3 rounded-lg hover:shadow-lg hover:border-apple-blue/20 transition-all duration-300"
                 onClick={() => setSelectedImage(cert.imageUrl)}
               >
-                {/* มุมตกแต่ง (Corner accents) */}
-                <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-blue-500 opacity-0 group-hover:opacity-100 transition-opacity z-20"></div>
-                <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-blue-500 opacity-0 group-hover:opacity-100 transition-opacity z-20"></div>
-
-                {/* รูปเกียรติบัตร (Grayscale effect) */}
-                <div className="relative aspect-[4/3] bg-[#0a0a0a] overflow-hidden border border-white/5 flex items-center justify-center">
-                  <span className="text-xs font-mono text-slate-600 uppercase tracking-widest">
-                    Load_Image_Data...
+                {/* Certificate Image */}
+                <div className="relative aspect-[4/3] bg-black/5 overflow-hidden border border-black/5 rounded-md flex items-center justify-center group-hover:border-apple-blue/30 transition-all">
+                  <span className="text-xs font-medium text-apple-text-grey uppercase tracking-tight">
+                    Loading preview...
                   </span>
                   <Image 
                     src={cert.imageUrl} 
                     alt={cert.title} 
                     fill 
-                    className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10" 
+                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
-                  <div className="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
                 </div>
 
-                {/* รายละเอียด */}
-                <div className="mt-4 px-2 pb-2">
-                  <h4 className="text-sm font-bold text-white line-clamp-2 leading-snug group-hover:text-blue-400 transition-colors">
+                {/* Certificate Info */}
+                <div className="mt-3">
+                  <h4 className="text-sm font-semibold text-[#1d1d1f] line-clamp-2 group-hover:text-apple-blue transition-colors">
                     {cert.title}
                   </h4>
-                  <p className="text-xs text-slate-500 font-mono mt-2 uppercase">
-                    ORG: {cert.issuer} // {cert.year}
+                  <p className="text-xs text-apple-text-grey mt-2 tracking-tight">
+                    {cert.issuer} • {cert.year}
                   </p>
-                  <p className="text-[10px] text-blue-500 font-mono mt-3 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 uppercase tracking-widest">
-                    <span className="w-1.5 h-1.5 bg-blue-500 animate-pulse"></span>
-                    Click to Enlarge
+                  <p className="text-xs text-apple-blue font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                    <span>→</span> View Certificate
                   </p>
                 </div>
               </div>

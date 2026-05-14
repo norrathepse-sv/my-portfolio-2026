@@ -123,7 +123,7 @@ export const projects: ProjectType[] = [
   {
     id: 12,
     category: "Website",
-    title: "เว็บไซต์งานโสตทัศนนศึกษาและเวชสาธิต",
+    title: "เว็บไซต์งานโสตทัศนศึกษาและเวชสาธิต",
     description: "เว็บไซต์รวบรวมผลงานและให้บริการสื่อทางการแพทย์และเวชสาธิต สำหรับใช้แนะนำบริการและแสดงผลงานของหน่วยงานโสตทัศนศึกษาในโรงพยาบาล ",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript"],
     imageUrl: "/images/projects/websod/cover.png",
