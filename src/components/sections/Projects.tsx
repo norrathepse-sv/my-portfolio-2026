@@ -41,9 +41,9 @@ export default function Projects() {
         
         {/* Section Header */}
         <div className="mb-12">
-          <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Featured Projects</p>
+          {/* <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Featured Projects</p> */}
           <h2 className="text-4xl md:text-5xl font-semibold text-[#1d1d1f] tracking-tight">
-            Projects
+            Show Case
           </h2>
         </div>
 

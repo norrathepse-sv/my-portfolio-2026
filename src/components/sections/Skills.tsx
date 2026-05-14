@@ -8,9 +8,9 @@ export default function Skills() {
         
         {/* Section Header */}
         <div className="mb-16">
-          <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Technical Skills</p>
+          {/* <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Technical Skills</p> */}
           <h2 className="text-4xl md:text-5xl font-semibold text-[#1d1d1f] tracking-tight">
-            Core Competencies
+            Competencies
           </h2>
         </div>
 

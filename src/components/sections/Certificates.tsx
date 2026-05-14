@@ -28,9 +28,9 @@ export default function Certificates() {
         {/* Section Header */}
         <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Qualifications</p>
+            {/* <p className="text-xs font-medium text-apple-text-grey mb-4 tracking-tight">Qualifications</p> */}
             <h2 className="text-4xl md:text-5xl font-semibold text-[#1d1d1f] tracking-tight">
-              Certificates & Licenses
+              Certificates
             </h2>
           </div>
 
