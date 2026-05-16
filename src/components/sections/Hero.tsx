@@ -29,7 +29,7 @@ export default function Hero() {
           {/* Description and CTA */}
           <div className="md:col-span-4 md:pt-12">
             <p className="text-sm leading-relaxed mb-10 text-apple-text-grey">
-              เปลี่ยนความซับซ้อนให้เป็นระบบที่ทรงพลัง เชี่ยวชาญการวางโครงสร้าง Full-stack สำหรับองค์กร ด้วยประสบการณ์กว่า 5 ปี
+              เปลี่ยนความซับซ้อนให้เป็นระบบที่ทรงพลัง เชี่ยวชาญการวางโครงสร้าง Full-stack สำหรับองค์กร ด้วยประสบการณ์กว่า 10 ปี
             </p>
             
             <div className="flex flex-col gap-3">
@@ -51,7 +51,7 @@ export default function Hero() {
         {/* Stats */}
         <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-black/5 pt-12">
           {[
-            { label: "Experience", value: "5+ Years" },
+            { label: "Experience", value: "10+ Years" },
             { label: "Projects", value: "13+ Complete" },
             { label: "Tech Stack", value: "Full-Stack" },
             { label: "Location", value: "Thailand" }
