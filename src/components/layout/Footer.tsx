@@ -30,7 +30,7 @@ export default function Footer() {
           <h3 className="text-[#1d1d1f] font-semibold mb-4 text-sm tracking-tight">Documents</h3>
           <ul className="text-apple-text-grey text-sm space-y-3">
             <li>
-              <a href="/documents/resume.pdf" target="_blank" className="hover:text-apple-blue transition-colors">
+              <a href="/documents/Resume.pdf" target="_blank" className="hover:text-apple-blue transition-colors">
                 Download Resume
               </a>
             </li>
