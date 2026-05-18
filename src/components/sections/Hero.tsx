@@ -19,10 +19,10 @@ export default function Hero() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-semibold text-[#1d1d1f] tracking-tight leading-tight mb-10">
-             "Full-Stack Web Developer | Next.js, TypeScript, Supabase & Tailwind CSS | สร้างสรรค์
+             "Full-Stack Web Developer | Next.js, TypeScript, Supabase & Tailwind CSS | 
             </h1>
             <p className="text-apple-text-grey text-sm md:text-base leading-relaxed border-l-2 border-black/5 pl-4">
-              แอปพลิเคชันที่รวดเร็ว เสถียร และดูแลรักษาง่าย"
+              สร้างสรรค์แอปพลิเคชันที่รวดเร็ว เสถียร และดูแลรักษาง่าย"
             </p>
           </div>
 
