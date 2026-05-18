@@ -29,7 +29,7 @@ export default function Hero() {
           {/* Description and CTA */}
           <div className="md:col-span-4 md:pt-12">
             <p className="text-sm leading-relaxed mb-10 text-apple-text-grey">
-          ประสบการณ์กว่า 10 ปี มุ่งมั่นพัฒนาระบบเทคโนโลยีสารสนเทศเพื่อยกระดับการทำงาน ด้วยสถาปัตยกรรมซอฟต์แวร์ที่ทันสมัย
+          ประสบการณ์กว่า 10 ปี มุ่งมั่นพัฒนาระบบเทคโนโลยีสารสนเทศเพื่อยกระดับการทำงานในองกค์กร ด้วยสถาปัตยกรรมซอฟต์แวร์ที่ทันสมัย
             </p>
             
             <div className="flex flex-col gap-3">
