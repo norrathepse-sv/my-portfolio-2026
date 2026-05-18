@@ -15,21 +15,21 @@ export default function Hero() {
           {/* Hero Headline */}
           <div className="md:col-span-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-medium tracking-tight text-apple-text-grey">
-              นักพัฒนาระบบและสถาปนิกโซลูชัน
+              SoftwareEngineer
             </div>
             
             <h1 className="text-5xl md:text-7xl font-semibold text-[#1d1d1f] tracking-tight leading-tight mb-10">
-              ออกแบบระบบไอทีที่รองรับงานสุขภาพได้อย่างมั่นคง
+             "Full-Stack Web Developer | Next.js, TypeScript, Supabase & Tailwind CSS | สร้างสรรค์
             </h1>
             <p className="text-apple-text-grey text-sm md:text-base leading-relaxed border-l-2 border-black/5 pl-4">
-              สร้างระบบองค์กรที่ใช้งานได้จริงและดูแลได้ง่าย โดยเน้นโครงสร้างที่ชัดเจนและปลอดภัย
+              แอปพลิเคชันที่รวดเร็ว เสถียร และดูแลรักษาง่าย"
             </p>
           </div>
 
           {/* Description and CTA */}
           <div className="md:col-span-4 md:pt-12">
             <p className="text-sm leading-relaxed mb-10 text-apple-text-grey">
-              เปลี่ยนความซับซ้อนให้เป็นระบบที่ทรงพลัง เชี่ยวชาญการวางโครงสร้าง Full-stack สำหรับองค์กร ด้วยประสบการณ์กว่า 10 ปี
+          ประสบการณ์กว่า 10 ปี มุ่งมั่นพัฒนาระบบเทคโนโลยีสารสนเทศเพื่อยกระดับการทำงาน ด้วยสถาปัตยกรรมซอฟต์แวร์ที่ทันสมัย
             </p>
             
             <div className="flex flex-col gap-3">
