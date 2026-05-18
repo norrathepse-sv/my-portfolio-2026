@@ -51,7 +51,7 @@ export const projects: ProjectType[] = [
   {
     id: 4,
     category: "Web Application",
-    title: "สั่งงานโสตทัศน์ออนไลน์สำหรับโรงพยาบาล (SOD-CUB)",
+    title: "สั่งงานโสตออนไลน์สำหรับโรงพยาบาล (SOD-CUB)",
     description: "แพลตฟอร์มสั่งงานโสตทัศนศึกษาออนไลน์ที่ครอบคลุมตั้งแต่การสั่งทำป้าย จองคิวบริการถ่ายภาพ การยืม-คืนอุปกรณ์ และการติดตามสถานะงานแบบ Real-time ช่วยจัดระเบียบ Workflow ของเจ้าหน้าที่ ลดความซ้ำซ้อน พร้อมระบบสรุปสถิติเพื่อเพิ่มประสิทธิภาพการบริหารจัดการทรัพยากรภายในโรงพยาบาล",
     techStack: ["Next.js", "Tailwind CSS", "TypeScript", "MongoDB"],
     imageUrl: "/images/projects/sodcub/cover.png",
