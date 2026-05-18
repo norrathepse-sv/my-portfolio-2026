@@ -34,7 +34,7 @@ export default function Hero() {
             
             <div className="flex flex-col gap-3">
               <Link 
-  href="/documents/resume.pdf" 
+  href="/documents/Resume.pdf" 
   target="_blank" 
   rel="noopener noreferrer"
   className="group flex items-center justify-center px-6 py-2.5 bg-[#1d1d1f] text-white font-medium rounded-full hover:bg-apple-blue transition-all duration-200 text-sm"
