@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from "react";
+import { use, useState, useEffect } from "react";
 import { projects } from "@/data/projects";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -15,6 +15,9 @@ export default function ProjectDetail({ params }: ProjectPageProps) {
   const resolvedParams = use(params);
   const projectId = parseInt(resolvedParams.id);
   
+  // 1. เปลี่ยน State มาเก็บ Index (ลำดับ) ของรูปภาพแทน ถ้ายกเลิก/ปิด ให้เป็น null
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);  
+  
   const project = projects.find((p) => p.id === projectId);
 
   if (!project) {
@@ -25,13 +28,41 @@ export default function ProjectDetail({ params }: ProjectPageProps) {
     ? project.gallery 
     : [project.imageUrl];
 
+  // 2. ฟังก์ชันควบคุม Modal
+  const closeModal = () => setSelectedIndex(null);
+
+  const showPrevImage = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation(); // ป้องกันไม่ให้ทะลุไปปิด Modal
+    setSelectedIndex((prev) => 
+      prev === null ? null : prev === 0 ? galleryImages.length - 1 : prev - 1
+    );
+  };
+
+  const showNextImage = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setSelectedIndex((prev) => 
+      prev === null ? null : prev === galleryImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  // 3. เพิ่ม Effect สำหรับรองรับการกดคีย์บอร์ด (ซ้าย, ขวา, ESC)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+      if (e.key === 'ArrowLeft') showPrevImage();
+      if (e.key === 'ArrowRight') showNextImage();
+      if (e.key === 'Escape') closeModal();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex]);
+
   return (
     <main className="relative min-h-screen bg-[#fcfcfc] pt-24 pb-32 overflow-hidden">
       
       {/* Background Decorator (Light Grid) */}
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none fixed" 
-           >
-      </div>
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none fixed"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6">
         
@@ -101,7 +132,9 @@ export default function ProjectDetail({ params }: ProjectPageProps) {
                     <img 
                       src={imgSrc} 
                       alt={`Interface ${index + 1} - ${project.title}`} 
-                      className="w-full h-auto object-cover"
+                      className="max-w-xl mx-auto h-auto transition-transform duration-300 hover:scale-105 cursor-pointer"
+                      // 3. เมื่อคลิก ให้เก็บ URL ของรูปนี้ลง State
+                     onClick={() => setSelectedIndex(index)}
                       onError={(e) => {
                         e.currentTarget.src = `https://placehold.co/1200x800/f8fafc/cbd5e1?text=SYS_IMAGE_${index + 1}_OFFLINE`;
                       }}
@@ -168,6 +201,67 @@ export default function ProjectDetail({ params }: ProjectPageProps) {
         )}
 
       </div>
+      
+      {/* 4. Modal ถูกย้ายออกมานอก loop และนอก Container หลัก */}
+     {selectedIndex !== null && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm transition-opacity group"
+          onClick={closeModal}
+        >
+          {/* ปุ่มเลื่อนซ้าย */}
+          {galleryImages.length > 1 && (
+            <button 
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 p-4 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all"
+              onClick={showPrevImage}
+              aria-label="Previous image"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+          )}
+
+          <div 
+            className="relative max-w-7xl w-full flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()} 
+          >
+            {/* ตัวนับหน้า (เช่น 1 / 3) */}
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-white/70 font-mono text-sm tracking-widest">
+               {selectedIndex + 1} / {galleryImages.length}
+            </div>
+
+            {/* ปุ่มปิด (X) */}
+            <button 
+              className="absolute -top-12 right-0 text-white/50 hover:text-white text-4xl font-light transition-colors"
+              onClick={closeModal}
+              aria-label="Close modal"
+            >
+              &times;
+            </button>
+            
+            {/* รูปภาพ */}
+            <img 
+              src={galleryImages[selectedIndex]} 
+              alt={`Full Interface View ${selectedIndex + 1}`} 
+              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-slate-700/50"
+              onError={(e) => {
+                e.currentTarget.src = `https://placehold.co/1200x800/1e293b/94a3b8?text=SYS_IMAGE_OFFLINE`;
+              }}
+            />
+          </div>
+
+          {/* ปุ่มเลื่อนขวา */}
+          {galleryImages.length > 1 && (
+            <button 
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 p-4 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all"
+              onClick={showNextImage}
+              aria-label="Next image"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+          )}
+
+        </div>
+      )}
+
     </main>
   );
 }
